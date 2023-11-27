@@ -3,78 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currency Converter</title>
+    <title>CURRENCY CONVERTER</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            margin: 20px;
-        }
+       body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 20px;
+    background-color: #f0f0f0;
+}
 
-        #header {
-            max-width: 800px;
-            margin: 0 auto;
-        }
+#header {
+    max-width: 800px;
+    margin: 0 auto;
+}
 
-        #image {
-            max-width: 100%;
-            margin-top: 20px;
-        }
+#image {
+    max-width: 100%;
+    margin-top: 20px;
+}
 
-        #description {
-            text-align: left;
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f4f4f4;
-            border-radius: 5px;
-        }
+#description {
+    text-align: left;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
 
-        #converter {
-            max-width: 90%;
-            margin: 20px auto;
-        }
+#converter {
+    max-width: 90%;
+    margin: 20px auto;
+    background-color: #e0e0e0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-        input,
-        select,
-        button {
-            width: 100%;
-            margin-top: 10px;
-            padding: 10px;
-            box-sizing: border-box;
-        }
+input,
+select,
+button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+}
 
-        @media only screen and (min-width: 600px) {
-            #converter {
-                max-width: 400px;
-            }
-        }
+@media only screen and (min-width: 600px) {
+    #converter {
+        max-width: 400px;
+    }
+}
+
+/* Media query for smaller screens (e.g., mobile devices) */
+@media only screen and (max-width: 600px) {
+    #converter {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+}
+
     </style>
 </head>
 <body>
 
     <div id="header">
-        <h1>Currency Converter</h1>
-        <img id="image" src="image.png" alt="Header Image">
+        <h1>CURRENCY CONVERTER</h1>
+        <img id="image" src="C:\Users\ADC\Desktop\project2\concurrency conv\image.png" alt="Header Image">
         <div id="description">
             <h2>About This Currency Converter</h2>
-            <p>This currency converter allows you to convert between different currencies. Simply enter the amount, select the source currency, choose the target currency, and click the "Convert" button.</p>
+            <p>This currency converter allows you to convert from INR to different currencies. Simply enter the amount, choose the target currency, and click the "Convert" button.</p>
         </div>
     </div>
 
     <div id="converter">
         <h2>Convert Currencies</h2>
-        <label for="amount">Amount:</label>
-        <input type="number" id="amount" placeholder="Enter amount" step="any" value="5">
-
-        <label for="fromCurrency">From Currency:</label>
-        <select id="fromCurrency">
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="GBP">GBP</option>
-            <option value="JPY">JPY</option>
-            <option value="CAD">CAD</option>
-            <option value="INR">INR</option>
-        </select>
+        <label for="amount">Amount (INR):</label>
+        <input type="number" id="amount" placeholder="Enter amount" step="any" value="100">
 
         <label for="toCurrency">To Currency:</label>
         <select id="toCurrency">
@@ -83,7 +86,6 @@
             <option value="GBP">GBP</option>
             <option value="JPY">JPY</option>
             <option value="CAD">CAD</option>
-            <option value="INR">INR</option>
         </select>
 
         <button onclick="convertCurrency()">Convert</button>
@@ -94,17 +96,15 @@
     <script>
         function convertCurrency() {
             const amount = parseFloat(document.getElementById('amount').value);
-            const fromCurrency = document.getElementById('fromCurrency').value;
             const toCurrency = document.getElementById('toCurrency').value;
 
             // Sample conversion rates for demonstration purposes
             const conversionRates = {
-                USD: { EUR: 0.83, GBP: 0.75, JPY: 110.25, CAD: 1.25, INR: 73.50 },
-                EUR: { USD: 1.18, GBP: 0.89, JPY: 129.93, CAD: 1.48, INR: 86.43 },
-                GBP: { USD: 1.33, EUR: 1.12, JPY: 145.53, CAD: 1.69, INR: 99.34 },
-                JPY: { USD: 0.0091, EUR: 0.0077, GBP: 0.0069, CAD: 0.011, INR: 0.73 },
-                CAD: { USD: 0.80, EUR: 0.68, GBP: 0.59, JPY: 89.41, INR: 58.89 },
-                INR: { USD: 0.014, EUR: 0.012, GBP: 0.010, JPY: 1.37, CAD: 0.017 }
+                USD: 0.014,
+                EUR: 0.012,
+                GBP: 0.010,
+                JPY: 1.37,
+                CAD: 0.017
             };
 
             if (isNaN(amount)) {
@@ -112,13 +112,13 @@
                 return;
             }
 
-            if (!conversionRates[fromCurrency] || !conversionRates[fromCurrency][toCurrency]) {
+            if (!conversionRates[toCurrency]) {
                 alert('Conversion not supported.');
                 return;
             }
 
-            const convertedAmount = amount * conversionRates[fromCurrency][toCurrency];
-            document.getElementById('result').innerText = `${amount} ${fromCurrency} = ${convertedAmount.toFixed(2)} ${toCurrency}`;
+            const convertedAmount = amount * conversionRates[toCurrency];
+            document.getElementById('result').innerText = `${amount} INR = ${convertedAmount.toFixed(2)} ${toCurrency}`;
         }
     </script>
 </body>
